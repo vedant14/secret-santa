@@ -1,23 +1,23 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Home() {
-  const [participants, setParticipants] = useState('');
+  const [participants, setParticipants] = useState("");
   const [pairs, setPairs] = useState([]);
 
   const generatePairs = async () => {
     try {
-      const response = await fetch('/api/secretsanta', {
-        method: 'POST',
+      const response = await fetch("/api/secretsanta", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ participants: participants.split('\n') }),
+        body: JSON.stringify({ participants: participants.split("\n") }),
       });
 
       const data = await response.json();
       setPairs(data.pairs);
     } catch (error) {
-      console.error('Error generating Secret Santa pairs:', error);
+      console.error("Error generating Secret Santa pairs:", error);
     }
   };
 
